@@ -1,14 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { fetchHeroDetails } from '@/api/starWarsAPI';
 import axios from 'axios';
-
-const HeroDetail = dynamic(() => import('../../components/HeroDetail'), {
-  ssr: false,
-});
+import HeroDetail from '@/components/HeroDetail';
 
 const HeroPage = () => {
   const { id } = useParams();
