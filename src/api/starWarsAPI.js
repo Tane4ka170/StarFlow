@@ -21,3 +21,22 @@ export const fetchHeroDetails = async (id) => {
     throw error;
   }
 };
+
+export const fetchFilmDetails = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/films/${id}/`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching film details for ID ${id}:`, error);
+    throw error;
+  }
+};
+
+export const fetchStarshipDetails = async (id) => {
+  try {
+    const response = await axios.get(`/starships/${id}/`);
+    console.log('Starship details:', response.data);
+  } catch (error) {
+    console.error('Error fetching starship details for ID', id, error);
+  }
+};
