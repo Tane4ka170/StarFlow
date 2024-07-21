@@ -1,40 +1,37 @@
 'use client';
+import CustomEdge from '@/helpers/CustomEdge';
+import CustomNode from '@/helpers/CustomNode';
+import React, { useMemo } from 'react';
+import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
-import React from 'react';
-import ReactFlow, { MiniMap, Controls } from 'react-flow-renderer';
+const nodeTypes = { customNode: CustomNode };
+const edgeTypes = { customEdge: CustomEdge };
 
-const HeroGraph = ({ hero, films, starships }) => {
-  const elements = [
-    { id: 'hero', data: { label: hero.name }, position: { x: 250, y: 5 } },
-    ...films.map((film, index) => ({
-      id: `film-${index}`,
-      data: { label: film.title },
-      position: { x: 100, y: 100 + index * 100 },
-    })),
-    ...starships.map((ship, index) => ({
-      id: `starship-${index}`,
-      data: { label: ship.name },
-      position: { x: 400, y: 100 + index * 100 },
-    })),
-    ...films.map((_, index) => ({
-      id: `hero-film-${index}`,
-      source: 'hero',
-      target: `film-${index}`,
-      animated: true,
-    })),
-    ...starships.map((_, index) => ({
-      id: `film-starship-${index}`,
-      source: `film-${index}`,
-      target: `starship-${index}`,
-      animated: true,
-    })),
-  ];
+const HeroGraph = ({ heroData }) => {
+  const elements = useMemo(() => {
+    if (Array.isArray(heroData)) {
+      return heroData.map((hero) => ({
+        id: `hero-${hero.id}`,
+        type: 'customNode',
+        data: { label: hero.name },
+        position: { x: Math.random() * 400, y: Math.random() * 400 },
+      }));
+    }
+    return [];
+  }, [heroData]);
 
   return (
-    <ReactFlow elements={elements}>
-      <MiniMap />
-      <Controls />
-    </ReactFlow>
+    <div style={{ height: 500 }}>
+      <ReactFlow
+        elements={elements}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+      >
+        <MiniMap />
+        <Controls />
+        <Background />
+      </ReactFlow>
+    </div>
   );
 };
 
