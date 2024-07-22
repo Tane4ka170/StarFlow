@@ -8,7 +8,7 @@ const HeroDetail = ({ hero, films, starships }) => {
   return (
     <Box>
       <Heading>{hero.name}</Heading>
-      <HeroGraph heroId={hero.id} />
+      <HeroGraph hero={hero} films={films} starships={starships} />
     </Box>
   );
 };
