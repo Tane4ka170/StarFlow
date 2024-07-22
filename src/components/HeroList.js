@@ -30,7 +30,7 @@ const HeroList = () => {
   }
 
   return (
-    <VStack spacing={4}>
+    <VStack spacing={4} p="6">
       {heroes.map((hero) => (
         <HeroCard key={hero.id} hero={hero} />
       ))}

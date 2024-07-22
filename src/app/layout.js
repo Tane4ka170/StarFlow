@@ -8,7 +8,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="../../public/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Star Wars Heroes" />
       </Head>
       <body>
         <ChakraProvider theme={theme}>{children}</ChakraProvider>
