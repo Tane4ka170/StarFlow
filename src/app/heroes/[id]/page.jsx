@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { fetchHeroDetails } from '@/api/starWarsAPI';
 import axios from 'axios';
 import HeroDetail from '@/components/HeroDetail';
+import { Box, Spinner } from '@chakra-ui/react';
 
 const HeroPage = () => {
   const { id } = useParams();
@@ -34,13 +35,13 @@ const HeroPage = () => {
   }, [id]);
 
   return (
-    <main>
+    <Box p={4}>
       {hero ? (
         <HeroDetail hero={hero} films={films} starships={starships} />
       ) : (
-        <p>Loading...</p>
+        <Spinner size="xl" />
       )}
-    </main>
+    </Box>
   );
 };
 

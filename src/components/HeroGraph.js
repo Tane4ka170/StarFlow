@@ -102,7 +102,7 @@ const HeroGraph = ({ hero }) => {
       <ReactFlow nodes={nodes} edges={edges} onLoad={onLoad} fitView>
         <MiniMap />
         <Controls />
-        <Background />
+        <Background variant="dots" gap={12} size={1} />
       </ReactFlow>
     </div>
   );

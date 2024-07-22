@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import HeroList from '@/components/HeroList';
 import { fetchHeroes } from '@/api/starWarsAPI';
+import { Box, Spinner, Text } from '@chakra-ui/react';
 
 const Heroes = () => {
   const [heroes, setHeroes] = useState([]);
@@ -24,13 +25,13 @@ const Heroes = () => {
     loadHeroes();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <Spinner size="xl" />;
+  if (error) return <Text color="red.500">{error}</Text>;
 
   return (
-    <main>
+    <Box p={4}>
       <HeroList heroes={heroes} />
-    </main>
+    </Box>
   );
 };
 
