@@ -34,9 +34,10 @@ export const fetchFilmDetails = async (id) => {
 
 export const fetchStarshipDetails = async (id) => {
   try {
-    const response = await axios.get(`/starships/${id}/`);
-    console.log('Starship details:', response.data);
+    const response = await axios.get(`${API_BASE_URL}/starships/${id}/`);
+    return response.data;
   } catch (error) {
-    console.error('Error fetching starship details for ID', id, error);
+    console.error(`Error fetching starship details for ID ${id}:`, error);
+    throw error;
   }
 };
